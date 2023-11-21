@@ -12,13 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # https://github.com/orgs/community/discussions/25617#discussioncomment-3248494
       - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GH_TOKEN }}
 
       - name: Create Git Tag
         run: |
           git tag $(cat VERSION)
-          git push origin $(cat VERSION)
+          git push --follow-tags
