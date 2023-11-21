@@ -1,5 +1,5 @@
 
-name: "Create '~/.aws/credentials' file" Action for GitHub Actions
+name: Create '~/.aws/credentials' file Action for GitHub Actions
 description: Creates '~/.aws/credentials' file for use in subsequent steps in a GitHub Action workflow
 runs:
   using: node20
