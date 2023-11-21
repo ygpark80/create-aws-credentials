@@ -1,7 +1,7 @@
 import fs from "fs"
 import os from "os"
 import path from "path"
-import core from "@actions/core"
+import * as core from "@actions/core"
 import { errorMessage } from "./utils"
 
 export function run() {

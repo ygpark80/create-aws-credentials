@@ -5,7 +5,7 @@ This action creates `~/.aws/credentials` file for use in subsequent steps in a G
 ## Example usage
 
 ```yaml
-uses: ygpark80/create-aws-credentials@v1.4
+uses: ygpark80/create-aws-credentials@v1.5
 with:
   profile: user1
   aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}

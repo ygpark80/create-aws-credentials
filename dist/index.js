@@ -6,6 +6,29 @@
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -14,13 +37,13 @@ exports.run = void 0;
 const fs_1 = __importDefault(__nccwpck_require__(7147));
 const os_1 = __importDefault(__nccwpck_require__(2037));
 const path_1 = __importDefault(__nccwpck_require__(1017));
-const core_1 = __importDefault(__nccwpck_require__(2186));
+const core = __importStar(__nccwpck_require__(2186));
 const utils_1 = __nccwpck_require__(4140);
 function run() {
-    const profile = core_1.default.getInput("profile");
-    const aws_access_key_id = core_1.default.getInput("aws-access-key-id");
-    const aws_secret_access_key = core_1.default.getInput("aws-secret-access-key");
-    const aws_region = core_1.default.getInput("aws-region");
+    const profile = core.getInput("profile");
+    const aws_access_key_id = core.getInput("aws-access-key-id");
+    const aws_secret_access_key = core.getInput("aws-secret-access-key");
+    const aws_region = core.getInput("aws-region");
     const awsDir = path_1.default.join(os_1.default.homedir(), ".aws");
     fs_1.default.mkdirSync(awsDir, { recursive: true });
     const credentialsContent = `
@@ -37,7 +60,7 @@ if (require.main === require.cache[eval('__filename')]) {
         run();
     }
     catch (error) {
-        core_1.default.setFailed((0, utils_1.errorMessage)(error));
+        core.setFailed((0, utils_1.errorMessage)(error));
     }
 }
 
