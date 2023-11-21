@@ -1,0 +1,24 @@
+name: Create Git Tag
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - VERSION
+
+jobs:
+  create_tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      # https://github.com/orgs/community/discussions/25617#discussioncomment-3248494
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Git Tag
+        run: |
+          git tag $(cat VERSION)
+          git push origin $(cat VERSION)
