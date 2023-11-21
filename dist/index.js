@@ -1,87 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 1667:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.run = void 0;
-const fs_1 = __importDefault(__nccwpck_require__(7147));
-const os_1 = __importDefault(__nccwpck_require__(2037));
-const path_1 = __importDefault(__nccwpck_require__(1017));
-const core = __importStar(__nccwpck_require__(2186));
-const utils_1 = __nccwpck_require__(4140);
-function run() {
-    const profile = core.getInput("profile");
-    const aws_access_key_id = core.getInput("aws-access-key-id");
-    const aws_secret_access_key = core.getInput("aws-secret-access-key");
-    const aws_region = core.getInput("aws-region");
-    const awsDir = path_1.default.join(os_1.default.homedir(), ".aws");
-    fs_1.default.mkdirSync(awsDir, { recursive: true });
-    const credentialsContent = `
-        [${profile}]
-        aws_access_key_id = ${aws_access_key_id}
-        aws_secret_access_key = ${aws_secret_access_key}
-        region = ${aws_region}
-    `.split("\n").map(line => line.trim()).join("\n");
-    fs_1.default.appendFileSync(path_1.default.join(awsDir, "credentials"), credentialsContent);
-}
-exports.run = run;
-if (require.main === require.cache[eval('__filename')]) {
-    try {
-        run();
-    }
-    catch (error) {
-        core.setFailed((0, utils_1.errorMessage)(error));
-    }
-}
-
-
-/***/ }),
-
-/***/ 4140:
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.errorMessage = void 0;
-function errorMessage(error) {
-    return error instanceof Error ? error.message : String(error);
-}
-exports.errorMessage = errorMessage;
-
-
-/***/ }),
-
 /***/ 7351:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -24329,6 +24248,87 @@ exports["default"] = _default;
 
 /***/ }),
 
+/***/ 6144:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.run = void 0;
+const fs_1 = __importDefault(__nccwpck_require__(7147));
+const os_1 = __importDefault(__nccwpck_require__(2037));
+const path_1 = __importDefault(__nccwpck_require__(1017));
+const core = __importStar(__nccwpck_require__(2186));
+const utils_1 = __nccwpck_require__(1314);
+function run() {
+    const profile = core.getInput("profile");
+    const aws_access_key_id = core.getInput("aws-access-key-id");
+    const aws_secret_access_key = core.getInput("aws-secret-access-key");
+    const aws_region = core.getInput("aws-region");
+    const awsDir = path_1.default.join(os_1.default.homedir(), ".aws");
+    fs_1.default.mkdirSync(awsDir, { recursive: true });
+    const credentialsContent = `
+        [${profile}]
+        aws_access_key_id = ${aws_access_key_id}
+        aws_secret_access_key = ${aws_secret_access_key}
+        region = ${aws_region}
+    `.split("\n").map(line => line.trim()).join("\n");
+    fs_1.default.appendFileSync(path_1.default.join(awsDir, "credentials"), credentialsContent);
+}
+exports.run = run;
+if (require.main === require.cache[eval('__filename')]) {
+    try {
+        run();
+    }
+    catch (error) {
+        core.setFailed((0, utils_1.errorMessage)(error));
+    }
+}
+
+
+/***/ }),
+
+/***/ 1314:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.errorMessage = void 0;
+function errorMessage(error) {
+    return error instanceof Error ? error.message : String(error);
+}
+exports.errorMessage = errorMessage;
+
+
+/***/ }),
+
 /***/ 9491:
 /***/ ((module) => {
 
@@ -26214,7 +26214,7 @@ module.exports = parseParams
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(1667);
+/******/ 	var __webpack_exports__ = __nccwpck_require__(6144);
 /******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()

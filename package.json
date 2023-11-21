@@ -1,11 +1,17 @@
 {
   "name": "create-aws-credentials",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ygpark80/create-aws-credentials.git"
+  },
   "scripts": {
-    "build": "tsc --project tsconfig.build.json",
-    "package": "npm run build && ncc build ./build/index.js -o ./dist && ncc build ./build/cleanup.js -o ./dist/cleanup"
+    "build": "ts-node src/readme.ts && ncc build src/index.ts -o ./dist && ncc build src/cleanup.ts -o ./dist/cleanup"
   },
   "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
     "@vercel/ncc": "^0.38.1",
+    "js-yaml": "^4.1.0",
+    "ts-node": "^10.9.1",
     "typescript": "^5.3.2"
   },
   "dependencies": {
