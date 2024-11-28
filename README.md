@@ -7,7 +7,7 @@ This action creates `~/.aws/credentials` file for use in subsequent steps in a G
 See [action.yml](action.yml)
 
 ```yaml
-- uses: ygpark80/create-aws-credentials@v1.5
+- uses: ygpark80/create-aws-credentials@v1.6
   with:
     # AWS profile name.
     profile: ''

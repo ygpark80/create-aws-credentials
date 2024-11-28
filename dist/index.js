@@ -24292,14 +24292,29 @@ function run() {
     const aws_secret_access_key = core.getInput("aws-secret-access-key");
     const aws_region = core.getInput("aws-region");
     const awsDir = path_1.default.join(os_1.default.homedir(), ".aws");
+    const credentialsPath = path_1.default.join(awsDir, "credentials");
     fs_1.default.mkdirSync(awsDir, { recursive: true });
-    const credentialsContent = `
+    // Read existing credentials if file exists
+    let existingContent = "";
+    if (fs_1.default.existsSync(credentialsPath)) {
+        existingContent = fs_1.default.readFileSync(credentialsPath, "utf-8");
+    }
+    // Remove existing profile section if it exists
+    const profileRegex = new RegExp(`\\[${profile}\\][^\\[]*(?=\\[|$)`, "g");
+    existingContent = existingContent.replace(profileRegex, "");
+    // Clean up any double newlines and trim
+    existingContent = existingContent.replace(/\n{3,}/g, "\n\n").trim();
+    const newProfileContent = `
         [${profile}]
         aws_access_key_id = ${aws_access_key_id}
         aws_secret_access_key = ${aws_secret_access_key}
         region = ${aws_region}
-    `.split("\n").map(line => line.trim()).join("\n");
-    fs_1.default.appendFileSync(path_1.default.join(awsDir, "credentials"), credentialsContent);
+    `.trim();
+    // Combine existing content with new profile
+    const finalContent = (existingContent
+        ? `${existingContent}\n\n${newProfileContent}\n`
+        : `${newProfileContent}\n`).split("\n").map(line => line.trim()).join("\n");
+    fs_1.default.writeFileSync(credentialsPath, finalContent);
 }
 exports.run = run;
 if (require.main === require.cache[eval('__filename')]) {
